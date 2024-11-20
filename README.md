@@ -1,2 +1,12 @@
 # resumeWebsite
-Animated website for my resume and other things I wanna share in a cool way!
+Animated website using following technolgoies:
+
+@React
+@react-three/fiber
+@react-three/drei
+Three.js
+GSAP (GreenSock Animation Platform)
+FastAPI
+MongoDB
+Docker
+GH Actions
