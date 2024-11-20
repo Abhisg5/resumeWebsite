@@ -55,7 +55,7 @@ A visually engaging, animated 3D website showcasing my resume and skills using c
    uvicorn main:app --reload
    ```
 ## **Deployment**  
-Frontend: Hosted on Vercel
-Backend: Hosted on Render
-DB: Hosted on MongoDB Atlas
-CI/CD: Automated workflows via Github Actions
+- **Frontend**: Hosted on Vercel
+- **Backend**: Hosted on Render
+- **DB**: Hosted on MongoDB Atlas
+- **CI/CD**: Automated workflows via Github Actions
