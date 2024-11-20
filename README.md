@@ -33,3 +33,29 @@ A visually engaging, animated 3D website showcasing my resume and skills using c
    ```bash
    cd frontend
    ```
+2. Install Dependencies
+   ```bash
+      npm install
+      ```
+3. Start the development server
+   ```bash
+   npm start
+   ```
+### **Backend Setup**
+1. Navigate to the `backend` directory::
+   ```bash
+   cd backend
+   ```
+2. Install Dependencies
+   ```bash
+      pip install -r requirements.txt
+      ```
+3. Start the FastAPI server
+   ```bash
+   uvicorn main:app --reload
+   ```
+## **Deployment**  
+Frontend: Hosted on Vercel
+Backend: Hosted on Render
+DB: Hosted on MongoDB Atlas
+CI/CD: Automated workflows via Github Actions
