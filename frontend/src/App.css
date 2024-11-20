@@ -1,0 +1,15 @@
+/* Ensure the root container fills the viewport */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Make the Canvas full-screen */
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
