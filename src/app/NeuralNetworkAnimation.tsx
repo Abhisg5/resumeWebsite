@@ -127,9 +127,8 @@ export default function NeuralNetworkAnimation() {
           edge.from.x + px,
           edge.from.y + py,
           edge.to.x + px,
-          edge.to.y + py
+          edge.to.y + py,
         );
-        const t = (Math.sin(time * 0.012 + i) + 1) / 2;
         grad.addColorStop(0, COLORS[edge.colorIdx]);
         grad.addColorStop(1, COLORS[(edge.colorIdx + 1) % COLORS.length]);
         ctx.save();
@@ -165,13 +164,24 @@ export default function NeuralNetworkAnimation() {
         for (const node of layers[l]) {
           // Breathe/float
           const float = Math.sin(time * 0.018 + node.floatPhase) * 7;
-          const pulse = Math.sin(node.pulse + time * 0.012) * 3 + node.base + float;
+          const pulse =
+            Math.sin(node.pulse + time * 0.012) * 3 + node.base + float;
           // Mouse interaction
-          const dist = Math.hypot(mouse.current.x - (node.x + px), mouse.current.y - (node.y + py));
-          const highlight = mouse.current.active && dist < 60 ? lerp(0.5, 1, 1 - dist / 60) : 0;
+          const dist = Math.hypot(
+            mouse.current.x - (node.x + px),
+            mouse.current.y - (node.y + py),
+          );
+          const highlight =
+            mouse.current.active && dist < 60 ? lerp(0.5, 1, 1 - dist / 60) : 0;
           ctx.save();
           ctx.beginPath();
-          ctx.arc(node.x + px, node.y + py, pulse + highlight * 8, 0, Math.PI * 2);
+          ctx.arc(
+            node.x + px,
+            node.y + py,
+            pulse + highlight * 8,
+            0,
+            Math.PI * 2,
+          );
           ctx.fillStyle = node.color;
           ctx.globalAlpha = 0.8 + highlight * 0.2;
           ctx.shadowColor = node.color;
@@ -180,13 +190,14 @@ export default function NeuralNetworkAnimation() {
           ctx.restore();
         }
       }
+      time += 1;
+      animationRef.current = requestAnimationFrame(draw);
     }
 
     function animate() {
-      time += 1;
       // Animate node pulses
       for (let l = 0; l < layers.length; l++) {
-        for (let node of layers[l]) {
+        for (const node of layers[l]) {
           node.pulse += 0.04 + Math.random() * 0.01;
         }
       }
@@ -198,15 +209,16 @@ export default function NeuralNetworkAnimation() {
       // Occasionally spawn a new signal
       if (Math.random() < 0.06) spawnSignal();
       draw();
-      animationRef.current = requestAnimationFrame(animate);
     }
     animate();
 
     function handleMouse(e: MouseEvent) {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      mouse.current.x = (e.clientX - rect.left) / (rect.right - rect.left) * width;
-      mouse.current.y = (e.clientY - rect.top) / (rect.bottom - rect.top) * height;
+      mouse.current.x =
+        ((e.clientX - rect.left) / (rect.right - rect.left)) * width;
+      mouse.current.y =
+        ((e.clientY - rect.top) / (rect.bottom - rect.top)) * height;
       mouse.current.active = true;
       parallax.current.x = (e.clientX - rect.left) / rect.width;
       parallax.current.y = (e.clientY - rect.top) / rect.height;
@@ -240,4 +252,4 @@ export default function NeuralNetworkAnimation() {
       />
     </div>
   );
-} 
+}

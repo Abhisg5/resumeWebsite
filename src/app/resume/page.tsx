@@ -1,10 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Resume() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,10 +25,13 @@ export default function Resume() {
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       className="flex flex-col items-center justify-center px-4 py-24"
     >
-      <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Resume</h1>
+      <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">
+        Resume
+      </h1>
       <div className="flex flex-col items-center gap-8">
         <p className="text-lg text-center max-w-2xl">
-          You can view or download my resume in PDF format below. Feel free to reach out if you have any questions!
+          You can view or download my resume in PDF format below. Feel free to
+          reach out if you have any questions!
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a
@@ -49,9 +50,7 @@ export default function Resume() {
             <span>📥</span> Download Resume
           </a>
         </div>
-
-       
       </div>
     </motion.main>
   );
-} 
+}
