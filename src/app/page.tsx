@@ -1,6 +1,4 @@
 "use client";
-import { useContext } from "react";
-import { ThemeContext } from "./ThemeLayout";
 import AnimatedBackground from "./AnimatedBackground";
 import AuroraWaves from "./AuroraWaves";
 import NeuralNetworkAnimation from "./NeuralNetworkAnimation";
@@ -26,7 +24,8 @@ export default function Home() {
             Machine Learning Engineer / Data Engineer
           </h2>
           <p className="text-lg md:text-xl text-center animate-fadein2 text-white/70 max-w-xl font-light">
-            Building intelligent systems and scalable data solutions with AI, cloud, and code.
+            Building intelligent systems and scalable data solutions with AI,
+            cloud, and code.
           </p>
         </div>
         <div className="w-full flex justify-center items-center mt-2">
@@ -35,22 +34,45 @@ export default function Home() {
       </div>
       <style jsx global>{`
         @keyframes fadein {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-        .animate-fadein { animation: fadein 1s cubic-bezier(.4,0,.2,1) 0.2s both; }
-        .animate-fadein2 { animation: fadein 1s cubic-bezier(.4,0,.2,1) 0.5s both; }
+        .animate-fadein {
+          animation: fadein 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+        .animate-fadein2 {
+          animation: fadein 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+        }
         @keyframes gradient-move {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 100% 50%;
+          }
         }
         .animate-gradient-move {
           animation: gradient-move 4s ease-in-out infinite alternate;
         }
         @keyframes divider-shimmer {
-          0% { background-position: 0% 50%; filter: brightness(1.1); }
-          50% { background-position: 100% 50%; filter: brightness(1.7); }
-          100% { background-position: 0% 50%; filter: brightness(1.1); }
+          0% {
+            background-position: 0% 50%;
+            filter: brightness(1.1);
+          }
+          50% {
+            background-position: 100% 50%;
+            filter: brightness(1.7);
+          }
+          100% {
+            background-position: 0% 50%;
+            filter: brightness(1.1);
+          }
         }
         .animate-divider-shimmer {
           background-size: 200% 200%;
