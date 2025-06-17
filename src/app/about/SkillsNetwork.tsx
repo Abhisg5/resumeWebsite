@@ -9,7 +9,12 @@ const nodeRadius = 32;
 const edgeColor = "rgba(255,255,255,0.18)";
 const highlightColor = "#38bdf8";
 
-function getRandomPosition(width: number, height: number) {
+type NodePosition = {
+  x: number;
+  y: number;
+};
+
+function getRandomPosition(width: number, height: number): NodePosition {
   const padding = nodeRadius * 2;
   return {
     x: Math.random() * (width - padding * 2) + padding,
@@ -21,7 +26,7 @@ const SkillsNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [dimensions, setDimensions] = useState({ width: 700, height: 400 });
-  const [nodes, setNodes] = useState<any[]>([]);
+  const [nodes, setNodes] = useState<NodePosition[]>([]);
 
   // Responsive sizing
   useEffect(() => {
@@ -37,9 +42,8 @@ const SkillsNetwork: React.FC = () => {
   // Initialize node positions
   useEffect(() => {
     setNodes(
-      skills.map((skill) => getRandomPosition(dimensions.width, dimensions.height))
+      skills.map(() => getRandomPosition(dimensions.width, dimensions.height))
     );
-    // eslint-disable-next-line
   }, [dimensions.width, dimensions.height]);
 
   // Animation loop

@@ -74,7 +74,7 @@ export default function About() {
             { label: "Helm", color: "bg-blue-900" },
             { label: "Flux", color: "bg-blue-800" },
             { label: "Qlik", color: "bg-blue-700" },
-          ].map((skill, i) => (
+          ].map((skill) => (
             <motion.span
               key={skill.label}
               className={`${skill.color} text-white px-4 py-2 rounded-full font-medium shadow transition-all duration-200 hover:scale-110 hover:shadow-xl focus:scale-110 focus:shadow-xl outline-none`}

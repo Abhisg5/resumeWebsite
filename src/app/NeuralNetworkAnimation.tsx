@@ -47,9 +47,9 @@ export default function NeuralNetworkAnimation() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    let dpr = window.devicePixelRatio || 1;
+    const dpr = window.devicePixelRatio || 1;
     let width = canvas.parentElement ? canvas.parentElement.offsetWidth : 520;
-    let height = 320;
+    const height = 320;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = width + "px";
@@ -68,14 +68,14 @@ export default function NeuralNetworkAnimation() {
     window.addEventListener("resize", handleResize);
 
     // Build network layers
-    let layers: Node[][] = [];
+    const layers: Node[][] = [];
     for (let l = 0; l < LAYER_COUNT; l++) {
-      let count = l === 0 || l === LAYER_COUNT - 1 ? 4 : NODE_COUNT / 2;
-      let nodes: Node[] = [];
+      const count = l === 0 || l === LAYER_COUNT - 1 ? 4 : NODE_COUNT / 2;
+      const nodes: Node[] = [];
       for (let n = 0; n < count; n++) {
-        let y = lerp(60, height - 60, n / (count - 1));
-        let x = lerp(80, width - 80, l / (LAYER_COUNT - 1));
-        let r = randomBetween(13, 18);
+        const y = lerp(60, height - 60, n / (count - 1));
+        const x = lerp(80, width - 80, l / (LAYER_COUNT - 1));
+        const r = randomBetween(13, 18);
         nodes.push({
           x,
           y: y + randomBetween(-10, 10),
@@ -90,17 +90,17 @@ export default function NeuralNetworkAnimation() {
     }
 
     // Build edges
-    let edges: Edge[] = [];
+    const edges: Edge[] = [];
     for (let l = 0; l < LAYER_COUNT - 1; l++) {
-      for (let a of layers[l]) {
-        for (let b of layers[l + 1]) {
+      for (const a of layers[l]) {
+        for (const b of layers[l + 1]) {
           edges.push({ from: a, to: b, colorIdx: l % COLORS.length });
         }
       }
     }
 
     // Signal pulses
-    let signals: Signal[] = [];
+    const signals: Signal[] = [];
     function spawnSignal() {
       const edge = edges[Math.floor(Math.random() * edges.length)];
       signals.push({
@@ -145,7 +145,7 @@ export default function NeuralNetworkAnimation() {
       }
 
       // Signal pulses
-      for (let s of signals) {
+      for (const s of signals) {
         const { from, to } = s.edge;
         const x = lerp(from.x + px, to.x + px, s.t);
         const y = lerp(from.y + py, to.y + py, s.t);
@@ -162,13 +162,13 @@ export default function NeuralNetworkAnimation() {
 
       // Nodes
       for (let l = 0; l < layers.length; l++) {
-        for (let node of layers[l]) {
+        for (const node of layers[l]) {
           // Breathe/float
-          let float = Math.sin(time * 0.018 + node.floatPhase) * 7;
-          let pulse = Math.sin(node.pulse + time * 0.012) * 3 + node.base + float;
+          const float = Math.sin(time * 0.018 + node.floatPhase) * 7;
+          const pulse = Math.sin(node.pulse + time * 0.012) * 3 + node.base + float;
           // Mouse interaction
-          let dist = Math.hypot(mouse.current.x - (node.x + px), mouse.current.y - (node.y + py));
-          let highlight = mouse.current.active && dist < 60 ? lerp(0.5, 1, 1 - dist / 60) : 0;
+          const dist = Math.hypot(mouse.current.x - (node.x + px), mouse.current.y - (node.y + py));
+          const highlight = mouse.current.active && dist < 60 ? lerp(0.5, 1, 1 - dist / 60) : 0;
           ctx.save();
           ctx.beginPath();
           ctx.arc(node.x + px, node.y + py, pulse + highlight * 8, 0, Math.PI * 2);

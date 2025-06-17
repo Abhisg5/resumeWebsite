@@ -7,7 +7,6 @@ import NeuralNetworkAnimation from "./NeuralNetworkAnimation";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const { theme } = useContext(ThemeContext);
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}

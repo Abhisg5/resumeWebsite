@@ -32,7 +32,7 @@ export default function Contact() {
       } else {
         setStatus("error");
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
     }
   };
@@ -110,7 +110,7 @@ export default function Contact() {
                 </motion.div>
                 <div>
                   <h3 className="text-green-400 font-semibold">Message Sent Successfully!</h3>
-                  <p className="text-green-300/80 text-sm">I'll get back to you as soon as possible.</p>
+                  <p className="text-green-300/80 text-sm">I&apos;ll get back to you as soon as possible.</p>
                 </div>
               </div>
             </motion.div>
