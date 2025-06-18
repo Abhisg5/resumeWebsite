@@ -33,8 +33,9 @@ jobs:
             - [ ] Code follows project style guidelines
             - [ ] Tests are passing
             - [ ] Documentation has been updated if necessary
-          branch: main
+          base: main
           labels: |
             feature
             draft
-          draft: true 
+          draft: true
+          delete-branch: false 
