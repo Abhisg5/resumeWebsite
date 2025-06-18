@@ -53,12 +53,12 @@ jobs:
           echo "Documentation directory not found"
           exit 1
         fi
-        if [ ! -f "docs/index.html" ]; then
-          echo "Documentation index file not found"
+        if [ ! -f "docs/README.md" ]; then
+          echo "Documentation README file not found"
           exit 1
         fi
         # Check for basic documentation structure
-        if [ ! -d "docs/classes" ] && [ ! -d "docs/interfaces" ]; then
+        if [ ! -d "docs/modules" ] && [ ! -d "docs/classes" ]; then
           echo "Documentation structure is incomplete"
           exit 1
         fi
