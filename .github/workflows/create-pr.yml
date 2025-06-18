@@ -4,49 +4,37 @@ on:
   push:
     branches:
       - 'feature/**'
-      - 'feat/**'
       - 'bugfix/**'
-      - 'fix/**'
+      - 'hotfix/**'
+      - 'release/**'
 
 jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'chore: update feature branch'
-          title: 'Feature: ${{ github.ref_name }}'
+          title: 'Feature: ${{ env.BRANCH_NAME }}'
           body: |
             ## Changes
-            This PR was automatically created from the feature branch `${{ github.ref_name }}`.
-
-            ## Test Results
-            All tests have passed successfully.
-
+            - Updated feature branch with latest changes
+            
             ## Checklist
-            - [ ] Code has been tested locally
-            - [ ] Tests are passing
             - [ ] Code follows project style guidelines
-            - [ ] Documentation has been updated (if necessary)
-          branch: 'main'
-          base: 'main'
+            - [ ] Tests are passing
+            - [ ] Documentation has been updated if necessary
+          branch: main
           labels: |
             feature
-            automated-pr 
+            draft
+          draft: true 
