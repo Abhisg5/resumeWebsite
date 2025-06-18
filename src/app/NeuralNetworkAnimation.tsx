@@ -38,7 +38,7 @@ type Signal = {
 
 export default function NeuralNetworkAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const mouse = useRef({ x: 0, y: 0, active: false });
   const parallax = useRef({ x: 0, y: 0 });
 
