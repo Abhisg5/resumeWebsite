@@ -58,7 +58,7 @@ jobs:
           exit 1
         fi
         # Check for basic documentation structure
-        if [ ! -d "docs/modules" ] && [ ! -d "docs/classes" ]; then
+        if [ ! -d "docs/about" ] || [ ! -d "docs/components" ]; then
           echo "Documentation structure is incomplete"
           exit 1
         fi
