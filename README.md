@@ -1,16 +1,15 @@
-# Portfolio Website
+# Resume Website
 
 [![Documentation](https://github.com/Abhisg5/resumeWebsite/actions/workflows/docs.yml/badge.svg)](https://abhisg5.github.io/resumeWebsite)
 [![CI](https://github.com/Abhisg5/resumeWebsite/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhisg5/resumeWebsite/actions/workflows/ci.yml)
 [![Code Coverage](https://codecov.io/gh/Abhisg5/resumeWebsite/branch/main/graph/badge.svg)](https://codecov.io/gh/Abhisg5/resumeWebsite)
-[![Dependencies](https://img.shields.io/david/Abhisg5/resumeWebsite.svg)](https://david-dm.org/Abhisg5/resumeWebsite)
-[![Dev Dependencies](https://img.shields.io/david/dev/Abhisg5/resumeWebsite.svg)](https://david-dm.org/Abhisg5/resumeWebsite?type=dev)
-[![License](https://img.shields.io/github/license/Abhisg5/resumeWebsite.svg)](https://github.com/Abhisg5/resumeWebsite/blob/main/LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-13.0-blueviolet.svg)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.3-blueviolet.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC.svg)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC.svg)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB.svg)](https://reactjs.org/)
+[![License](https://img.shields.io/github/license/Abhisg5/resumeWebsite.svg)](https://github.com/Abhisg5/resumeWebsite/blob/main/LICENSE)
 
-A modern portfolio website built with Next.js 13+, TypeScript, and Tailwind CSS.
+A modern resume website built with Next.js 13+, TypeScript, and Tailwind CSS.
 
 ## Features
 
