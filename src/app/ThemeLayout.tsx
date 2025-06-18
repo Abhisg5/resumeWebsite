@@ -1,15 +1,22 @@
 "use client";
 import { useState, createContext, ReactNode } from "react";
 
-export const ThemeContext = createContext({ theme: "blue", setTheme: (_: string) => {} });
+type ThemeContextType = {
+  theme: string;
+  setTheme: (theme: string) => void;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: "blue",
+  setTheme: () => {},
+});
 
 export default function ThemeLayout({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState("blue");
+
   return (
-    <div className={`theme-${theme}`}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        {children}
-      </ThemeContext.Provider>
-    </div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
   );
-} 
+}
