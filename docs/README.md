@@ -1,3 +1,7 @@
+**Resume Website Documentation v0.1.0**
+
+***
+
 # Portfolio Website
 
 [![Documentation](https://github.com/Abhisg5/resumeWebsite/actions/workflows/docs.yml/badge.svg)](https://abhisg5.github.io/resumeWebsite)
@@ -64,23 +68,9 @@ cd resumeWebsite
 # Install dependencies
 make install
 
-# Set up git hooks (husky)
-npx husky install
-npm run prepare
-
 # Start development server
 make dev
 ```
-
-### Git Hooks
-
-This project uses husky for git hooks to ensure code quality. The following checks run automatically on commit:
-
-- Code formatting (Prettier)
-- Linting (ESLint)
-- Type checking (TypeScript)
-
-If you're contributing to this project, make sure to run `npx husky install` after cloning to set up the git hooks.
 
 ### Available Commands
 
@@ -132,7 +122,7 @@ The site is deployed on Vercel. Each push to the main branch triggers a new depl
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](_media/LICENSE) file for details.
 
 ## 👨‍💻 Author
 

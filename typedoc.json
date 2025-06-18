@@ -1,0 +1,17 @@
+{
+  "entryPoints": ["src/app/**/*.tsx", "src/app/**/*.ts"],
+  "out": "docs",
+  "exclude": ["**/*.test.tsx", "**/*.test.ts", "**/__tests__/**"],
+  "theme": "default",
+  "name": "Resume Website Documentation",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "includeVersion": true,
+  "hideGenerator": true,
+  "categorizeByGroup": true,
+  "categoryOrder": ["Components", "Hooks", "Utils", "*"],
+  "plugin": ["typedoc-plugin-markdown"],
+  "disableSources": true,
+  "readme": "README.md"
+}

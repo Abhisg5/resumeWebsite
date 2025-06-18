@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI
 
 on:
   push:
@@ -12,38 +12,56 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v3
-
+    - uses: actions/checkout@v4
+    
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
+    
     - name: Install dependencies
       run: make install
-
-    - name: Format check
+    
+    - name: Run formatting
       run: make format
-
-    - name: Lint
+    
+    - name: Run linting
       run: make lint
-
+    
     - name: Run tests
       run: make test
-
-    - name: Run coverage
+    
+    - name: Generate coverage report
       run: make coverage
-
-    - name: Build
-      run: make build
-
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage/
-        fail_ci_if_error: false  # Changed to false to prevent build failures due to rate limits 
+        fail_ci_if_error: false
+    
+    - name: Generate documentation
+      run: make docs
+    
+    - name: Verify documentation
+      run: |
+        if [ ! -d "docs" ]; then
+          echo "Documentation directory not found"
+          exit 1
+        fi
+        if [ ! -f "docs/README.md" ]; then
+          echo "Documentation README file not found"
+          exit 1
+        fi
+        # Check for basic documentation structure
+        if [ ! -d "docs/about" ] || [ ! -d "docs/components" ]; then
+          echo "Documentation structure is incomplete"
+          exit 1
+        fi
+    
+    - name: Build
+      run: make build 
