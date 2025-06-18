@@ -1,6 +1,6 @@
-# Resume Website
+# Portfolio Website
 
-[![Documentation](https://github.com/Abhisg5/resumeWebsite/actions/workflows/docs.yml/badge.svg)](https://abhisg5.github.io/resumeWebsite)
+[![Documentation](https://img.shields.io/badge/Documentation-GitHub%20Pages-blue)](https://abhisg5.github.io/resumeWebsite/)
 [![CI](https://github.com/Abhisg5/resumeWebsite/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhisg5/resumeWebsite/actions/workflows/ci.yml)
 [![Code Coverage](https://codecov.io/gh/Abhisg5/resumeWebsite/branch/main/graph/badge.svg)](https://codecov.io/gh/Abhisg5/resumeWebsite)
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.3-blueviolet.svg)](https://nextjs.org/)
