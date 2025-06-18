@@ -1,4 +1,4 @@
-.PHONY: format lint test coverage clean
+.PHONY: format lint test coverage clean docs
 
 # Node modules path
 NODE_MODULES = ./node_modules/.bin
@@ -27,7 +27,7 @@ clean:
 
 # Install dependencies
 install:
-	npm install
+	npm ci
 
 # Build the project
 build:
@@ -36,6 +36,15 @@ build:
 # Development server
 dev:
 	npm run dev
+
+# Start the project
+start:
+	npm run start
+
+# Documentation generation
+docs:
+	npx typedoc --out docs src/app/**/*.tsx src/app/**/*.ts
+	@echo "Documentation generated in docs/ directory"
 
 # Default target
 all: format lint test coverage 

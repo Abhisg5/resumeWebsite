@@ -1,3 +1,7 @@
+**Resume Website Documentation v0.1.0**
+
+***
+
 # Portfolio Website
 
 [![Documentation](https://github.com/Abhisg5/resumeWebsite/actions/workflows/docs.yml/badge.svg)](https://abhisg5.github.io/resumeWebsite)
@@ -118,7 +122,7 @@ The site is deployed on Vercel. Each push to the main branch triggers a new depl
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](_media/LICENSE) file for details.
 
 ## 👨‍💻 Author
 

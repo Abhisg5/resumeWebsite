@@ -59,17 +59,22 @@ Object.defineProperty(window, "HTMLCanvasElement", {
   value: MockCanvasElement,
 });
 
-// Mock window.requestAnimationFrame to prevent infinite recursion
-let rafCallbacks: Array<() => void> = [];
-window.requestAnimationFrame = jest.fn((callback) => {
+// Mock requestAnimationFrame
+let rafCallbacks: Array<FrameRequestCallback> = [];
+global.requestAnimationFrame = (callback: FrameRequestCallback) => {
   rafCallbacks.push(callback);
-  return rafCallbacks.length;
-});
+  return 0;
+};
 
-// Mock window.cancelAnimationFrame
-window.cancelAnimationFrame = jest.fn((id) => {
-  rafCallbacks = rafCallbacks.filter((_, index) => index !== id - 1);
-});
+// Mock cancelAnimationFrame
+global.cancelAnimationFrame = () => {};
+
+// Helper to run all pending animation frames
+export const runAnimationFrames = () => {
+  const callbacks = [...rafCallbacks];
+  rafCallbacks = [];
+  callbacks.forEach((callback) => callback(0));
+};
 
 // Reset all mocks before each test
 beforeEach(() => {

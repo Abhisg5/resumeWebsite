@@ -2,18 +2,41 @@
 
 import { useState, useEffect } from "react";
 
+/**
+ * Interface representing the form data structure
+ * @interface FormData
+ */
 interface FormData {
   name: string;
   email: string;
   message: string;
 }
 
+/**
+ * Interface representing the form errors structure
+ * @interface FormErrors
+ */
 interface FormErrors {
   name?: string;
   email?: string;
   message?: string;
 }
 
+/**
+ * ContactForm Component
+ *
+ * A form component that handles user contact submissions. It includes:
+ * - Form validation
+ * - Error handling
+ * - Success/error state management
+ * - API integration
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <ContactForm />
+ * ```
+ */
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",

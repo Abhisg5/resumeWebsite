@@ -1,4 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged 
+# Run lint-staged
+npx lint-staged
+
+# Generate documentation if TypeScript files are changed
+if git diff --cached --name-only | grep -q "\.tsx\?$"; then
+  echo "Generating documentation..."
+  make docs
+  git add docs/
+fi 
