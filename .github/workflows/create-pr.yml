@@ -1,0 +1,41 @@
+name: Create Pull Request
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'hotfix/**'
+      - 'release/**'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update feature branch'
+          title: 'Feature: ${{ env.BRANCH_NAME }}'
+          body: |
+            ## Changes
+            - Updated feature branch with latest changes
+            
+            ## Checklist
+            - [ ] Code follows project style guidelines
+            - [ ] Tests are passing
+            - [ ] Documentation has been updated if necessary
+          base: main
+          labels: |
+            feature
+            draft
+          draft: true
+          delete-branch: false 
