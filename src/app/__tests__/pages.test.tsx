@@ -8,9 +8,13 @@ import WorkPage from "../work/page";
 describe("Page Components", () => {
   it("renders home page", () => {
     render(<HomePage />);
-    expect(screen.getByText("Abhinav Gaddipati")).toBeInTheDocument();
     expect(
-      screen.getByText("Machine Learning Engineer & Data Engineer"),
+      screen.getByText("Data Engineering & ML Solutions"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Senior Data Engineer | AWS Certified | 4+ Years Experience",
+      ),
     ).toBeInTheDocument();
   });
 

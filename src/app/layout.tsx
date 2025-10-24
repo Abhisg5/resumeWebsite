@@ -2,15 +2,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeLayout from "./ThemeLayout";
-import {
-  FaHome,
-  FaUser,
-  FaBriefcase,
-  FaProjectDiagram,
-  FaCertificate,
-  FaEnvelope,
-  FaFileDownload,
-} from "react-icons/fa";
 import AuroraWaves from "./AuroraWaves";
 import AnimatedBackground from "./AnimatedBackground";
 import Link from "next/link";
@@ -33,6 +24,7 @@ export default function RootLayout({
 }>) {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,98 +58,164 @@ export default function RootLayout({
         <AuroraWaves />
         <AnimatedBackground />
 
-        {/* Professional floating navigation */}
+        {/* Professional top navigation */}
         <nav
-          className={`fixed top-1/2 -translate-y-1/2 right-4 md:right-8 z-[100] pointer-events-auto flex flex-col gap-1 rounded-2xl shadow-lg px-2 py-2 border transition-all duration-200 ${
+          className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
             scrolled
-              ? "bg-white/90 backdrop-blur-xl border-gray-200/50 dark:bg-black/90 dark:border-white/20"
-              : "bg-white/80 backdrop-blur-lg border-gray-200/30 dark:bg-black/70 dark:border-white/10"
+              ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 dark:bg-black/95 dark:border-white/20 shadow-lg"
+              : "bg-transparent"
           }`}
         >
-          <Link
-            href="/"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaHome
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Home
-            </span>
-          </Link>
-          <Link
-            href="/about"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaUser
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              About
-            </span>
-          </Link>
-          <Link
-            href="/work"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaBriefcase
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Work
-            </span>
-          </Link>
-          <Link
-            href="/projects"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaProjectDiagram
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Projects
-            </span>
-          </Link>
-          <Link
-            href="/certifications"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaCertificate
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Certs
-            </span>
-          </Link>
-          <Link
-            href="/contact"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaEnvelope
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Contact
-            </span>
-          </Link>
-          <Link
-            href="/resume"
-            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
-          >
-            <FaFileDownload
-              size={18}
-              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
-            />
-            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
-              Resume
-            </span>
-          </Link>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo/Brand */}
+              <Link
+                href="/"
+                className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Abhinav Gaddipati
+              </Link>
+
+              {/* Navigation Links */}
+              <div className="hidden md:flex items-center space-x-1">
+                <Link
+                  href="/"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/work"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Work
+                </Link>
+                <Link
+                  href="/projects"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Projects
+                </Link>
+                <Link
+                  href="/certifications"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Certifications
+                </Link>
+                <Link
+                  href="/contact"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href="/resume"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                >
+                  Resume
+                </Link>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+              >
+                {mobileMenuOpen ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu Dropdown */}
+          {mobileMenuOpen && (
+            <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50 dark:bg-black/95 dark:border-white/20 shadow-lg">
+              <div className="px-4 py-4 space-y-2">
+                <Link
+                  href="/"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/work"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Work
+                </Link>
+                <Link
+                  href="/projects"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Projects
+                </Link>
+                <Link
+                  href="/certifications"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Certifications
+                </Link>
+                <Link
+                  href="/contact"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+                <Link
+                  href="/resume"
+                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Resume
+                </Link>
+              </div>
+            </div>
+          )}
         </nav>
         <ThemeLayout>{children}</ThemeLayout>
       </body>

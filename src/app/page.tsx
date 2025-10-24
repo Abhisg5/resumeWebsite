@@ -22,28 +22,19 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <h1 className="creative-heading mb-8">Abhinav Gaddipati</h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">
+            Data Engineering & ML Solutions
+          </h1>
 
-          <motion.div
-            className="section-divider mb-12"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
-          />
-
-          <h2 className="creative-subheading mb-8">
-            Machine Learning Engineer & Data Engineer
+          <h2 className="text-xl md:text-2xl text-white/80 mb-8 font-medium">
+            Senior Data Engineer | AWS Certified | 4+ Years Experience
           </h2>
 
-          <p className="creative-text max-w-4xl mx-auto mb-12">
-            I transform complex data challenges into intelligent, scalable
-            solutions. With expertise in AWS, Python, and modern ML frameworks,
-            I help organizations unlock the power of their data through
-            cutting-edge machine learning and robust data engineering.
-            <br />
-            <span className="text-primary font-semibold">
-              Let&apos;s build something that transforms your business.
-            </span>
+          <p className="text-lg text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
+            I architect and implement enterprise-scale data infrastructure,
+            build production ML pipelines, and optimize data workflows for
+            high-performance analytics. Specialized in AWS, Apache Spark, and
+            modern data engineering frameworks.
           </p>
         </motion.div>
 
@@ -113,21 +104,25 @@ export default function Home() {
           transition={{ duration: 1, delay: 1.5 }}
         >
           <div className="interactive-card p-8 text-center">
-            <h3 className="creative-subheading mb-6">
-              Ready to Build Something Amazing?
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+              Ready to Scale Your Data Infrastructure?
             </h3>
-            <p className="creative-text mb-8 max-w-2xl mx-auto">
-              I specialize in transforming complex data challenges into
-              scalable, intelligent solutions. From machine learning models to
-              cloud infrastructure, I help organizations unlock the power of
-              their data.
+            <p className="text-white/70 mb-8 max-w-2xl mx-auto text-lg">
+              Let&apos;s discuss how I can help optimize your data pipelines,
+              implement ML solutions, or architect your next data platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/work" className="creative-btn">
-                View My Work
+              <a
+                href="/work"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                View Experience
               </a>
-              <a href="/contact" className="creative-btn">
-                Let&apos;s Connect
+              <a
+                href="/contact"
+                className="border border-white/30 hover:bg-white/10 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Get in Touch
               </a>
             </div>
           </div>
