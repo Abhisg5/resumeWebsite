@@ -2,7 +2,15 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeLayout from "./ThemeLayout";
-import { FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaCertificate, FaEnvelope, FaFileDownload } from "react-icons/fa";
+import {
+  FaHome,
+  FaUser,
+  FaBriefcase,
+  FaProjectDiagram,
+  FaCertificate,
+  FaEnvelope,
+  FaFileDownload,
+} from "react-icons/fa";
 import AuroraWaves from "./AuroraWaves";
 import AnimatedBackground from "./AnimatedBackground";
 import Link from "next/link";
@@ -45,50 +53,110 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="smooth-scroll">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {/* Scroll Progress Bar */}
-        <div 
-          className="scroll-progress" 
+        <div
+          className="scroll-progress"
           style={{ transform: `scaleX(${scrollProgress / 100})` }}
         />
-        
+
         {/* Animated backgrounds for all pages */}
         <AuroraWaves />
         <AnimatedBackground />
-        
-        {/* Floating vertical nav with scroll effect */}
-        <nav className={`fixed top-1/2 -translate-y-1/2 right-8 z-[100] pointer-events-auto flex flex-col gap-4 rounded-2xl shadow-2xl px-3 py-4 border border-white/10 transition-all duration-300 ${
-          scrolled 
-            ? "bg-black/80 backdrop-blur-lg" 
-            : "bg-black/60 backdrop-blur-md"
-        }`}>
-          <Link href="/" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaHome size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Home</span>
+
+        {/* Professional floating navigation */}
+        <nav
+          className={`fixed top-1/2 -translate-y-1/2 right-4 md:right-8 z-[100] pointer-events-auto flex flex-col gap-1 rounded-2xl shadow-lg px-2 py-2 border transition-all duration-200 ${
+            scrolled
+              ? "bg-white/90 backdrop-blur-xl border-gray-200/50 dark:bg-black/90 dark:border-white/20"
+              : "bg-white/80 backdrop-blur-lg border-gray-200/30 dark:bg-black/70 dark:border-white/10"
+          }`}
+        >
+          <Link
+            href="/"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaHome
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Home
+            </span>
           </Link>
-          <Link href="/about" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaUser size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">About</span>
+          <Link
+            href="/about"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaUser
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              About
+            </span>
           </Link>
-          <Link href="/work" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaBriefcase size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Work</span>
+          <Link
+            href="/work"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaBriefcase
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Work
+            </span>
           </Link>
-          <Link href="/projects" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaProjectDiagram size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Projects</span>
+          <Link
+            href="/projects"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaProjectDiagram
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Projects
+            </span>
           </Link>
-          <Link href="/certifications" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaCertificate size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Certs</span>
+          <Link
+            href="/certifications"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaCertificate
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Certs
+            </span>
           </Link>
-          <Link href="/contact" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaEnvelope size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Contact</span>
+          <Link
+            href="/contact"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaEnvelope
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Contact
+            </span>
           </Link>
-          <Link href="/resume" className="group flex flex-col items-center gap-1 text-white hover:text-blue-400 focus:text-blue-400 transition cursor-pointer outline-none">
-            <FaFileDownload size={22} className="transition-transform group-hover:scale-125 group-focus:scale-125 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]" />
-            <span className="text-xs font-medium transition-transform group-hover:scale-110 group-focus:scale-110 group-hover:drop-shadow-[0_0_8px_#38bdf8] group-focus:drop-shadow-[0_0_8px_#38bdf8]">Resume</span>
+          <Link
+            href="/resume"
+            className="group flex flex-col items-center gap-1 text-gray-700 hover:text-blue-600 focus:text-blue-600 dark:text-white dark:hover:text-blue-400 dark:focus:text-blue-400 transition-all duration-200 cursor-pointer outline-none p-2 rounded-lg hover:bg-blue-50 focus:bg-blue-50 dark:hover:bg-white/10 dark:focus:bg-white/10"
+          >
+            <FaFileDownload
+              size={18}
+              className="transition-all duration-200 group-hover:scale-110 group-focus:scale-110"
+            />
+            <span className="text-xs font-medium transition-all duration-200 group-hover:scale-105 group-focus:scale-105 hidden sm:block">
+              Resume
+            </span>
           </Link>
         </nav>
         <ThemeLayout>{children}</ThemeLayout>

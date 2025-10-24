@@ -30,14 +30,22 @@ export default function AuroraWaves() {
       for (let i = 0; i < 3; i++) {
         ctx.save();
         const grad = ctx.createLinearGradient(0, 0, width, height);
-        grad.addColorStop(0, `hsla(${(t * 20 + i * 60) % 360}, 100%, 70%, 0.18)`);
-        grad.addColorStop(1, `hsla(${(t * 20 + i * 60 + 120) % 360}, 100%, 70%, 0.10)`);
+        grad.addColorStop(
+          0,
+          `hsla(${(t * 20 + i * 60) % 360}, 100%, 70%, 0.18)`,
+        );
+        grad.addColorStop(
+          1,
+          `hsla(${(t * 20 + i * 60 + 120) % 360}, 100%, 70%, 0.10)`,
+        );
         ctx.fillStyle = grad;
         ctx.beginPath();
         const baseY = height * (0.3 + i * 0.18);
         ctx.moveTo(0, baseY);
         for (let x = 0; x <= width; x += 8) {
-          const y = baseY + Math.sin((x / width) * Math.PI * 2 + t * 0.8 + i) * (40 + i * 30);
+          const y =
+            baseY +
+            Math.sin((x / width) * Math.PI * 2 + t * 0.8 + i) * (40 + i * 30);
           ctx.lineTo(x, y);
         }
         ctx.lineTo(width, height);
@@ -68,7 +76,14 @@ export default function AuroraWaves() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full z-0 pointer-events-none"
-      style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", pointerEvents: "none" }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        pointerEvents: "none",
+      }}
     />
   );
-} 
+}

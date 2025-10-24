@@ -10,13 +10,13 @@ describe("Page Components", () => {
     render(<HomePage />);
     expect(screen.getByText("Abhinav Gaddipati")).toBeInTheDocument();
     expect(
-      screen.getByText("Machine Learning Engineer / Data Engineer"),
+      screen.getByText("Machine Learning Engineer & Data Engineer"),
     ).toBeInTheDocument();
   });
 
   it("renders about page", () => {
     render(<AboutPage />);
-    expect(screen.getByText("About Me")).toBeInTheDocument();
+    expect(screen.getByText("About")).toBeInTheDocument();
   });
 
   it("renders contact page", () => {

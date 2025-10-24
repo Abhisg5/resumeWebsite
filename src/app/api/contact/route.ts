@@ -1,48 +1,59 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
 
-    // Create a transporter using SMTP
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
+    // Validate required fields
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 },
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
+        { status: 400 },
+      );
+    }
+
+    // For now, we'll log the contact form submission
+    // In production, you would integrate with an email service
+    console.log("Contact Form Submission:", {
+      name,
+      email,
+      message,
+      timestamp: new Date().toISOString(),
     });
 
-    // Send email
-    await transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to: process.env.CONTACT_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
-      text: `
-Name: ${name}
-Email: ${email}
-Message: ${message}
-      `,
-      html: `
-<h2>New Contact Form Submission</h2>
-<p><strong>Name:</strong> ${name}</p>
-<p><strong>Email:</strong> ${email}</p>
-<p><strong>Message:</strong></p>
-<p>${message}</p>
-      `,
-    });
+    // Simulate email sending (replace with actual email service)
+    // You can integrate with services like:
+    // - SendGrid
+    // - Mailgun
+    // - AWS SES
+    // - Resend
+    // - EmailJS (client-side)
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      {
+        message: "Contact form submitted successfully",
+        data: {
+          name,
+          email,
+          message,
+          timestamp: new Date().toISOString(),
+        },
+      },
       { status: 200 },
     );
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error processing contact form:", error);
     return NextResponse.json(
-      { error: "Failed to send email" },
+      { error: "Failed to process contact form" },
       { status: 500 },
     );
   }

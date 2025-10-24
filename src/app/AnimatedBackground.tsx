@@ -42,7 +42,9 @@ export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouse = useRef({ x: -1000, y: -1000, down: false });
   const ripple = useRef({ x: 0, y: 0, t: 0 });
-  const shootingStar = useRef(null as null | ReturnType<typeof randomShootingStar>);
+  const shootingStar = useRef(
+    null as null | ReturnType<typeof randomShootingStar>,
+  );
   const shootingStarTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -94,8 +96,12 @@ export default function AnimatedBackground() {
     function triggerShootingStar() {
       shootingStar.current = randomShootingStar(width, height);
       // Next shooting star in 3-8 seconds
-      if (shootingStarTimeout.current) clearTimeout(shootingStarTimeout.current);
-      shootingStarTimeout.current = setTimeout(triggerShootingStar, 3000 + Math.random() * 5000);
+      if (shootingStarTimeout.current)
+        clearTimeout(shootingStarTimeout.current);
+      shootingStarTimeout.current = setTimeout(
+        triggerShootingStar,
+        3000 + Math.random() * 5000,
+      );
     }
     triggerShootingStar();
 
@@ -113,7 +119,10 @@ export default function AnimatedBackground() {
           if (dist < MAX_DISTANCE) {
             ctx.save();
             ctx.globalAlpha = 1 - dist / MAX_DISTANCE;
-            const [r, g, b_] = colorShift(BASE_LINE_COLOR, t / 200 + i * 0.01 + j * 0.01);
+            const [r, g, b_] = colorShift(
+              BASE_LINE_COLOR,
+              t / 200 + i * 0.01 + j * 0.01,
+            );
             ctx.strokeStyle = `rgb(${r},${g},${b_})`;
             ctx.lineWidth = 1.2;
             ctx.beginPath();
@@ -144,7 +153,13 @@ export default function AnimatedBackground() {
         ctx.save();
         ctx.globalAlpha = 0.25 * (1 - ripple.current.t);
         ctx.beginPath();
-        ctx.arc(ripple.current.x, ripple.current.y, ripple.current.t * 180, 0, 2 * Math.PI);
+        ctx.arc(
+          ripple.current.x,
+          ripple.current.y,
+          ripple.current.t * 180,
+          0,
+          2 * Math.PI,
+        );
         ctx.strokeStyle = `rgb(255,255,255)`;
         ctx.lineWidth = 4;
         ctx.shadowColor = `#38bdf8`;
@@ -165,7 +180,7 @@ export default function AnimatedBackground() {
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(
           s.x - Math.cos(s.angle) * s.length * 0.7,
-          s.y - Math.sin(s.angle) * s.length * 0.7
+          s.y - Math.sin(s.angle) * s.length * 0.7,
         );
         ctx.stroke();
         ctx.restore();
@@ -203,11 +218,7 @@ export default function AnimatedBackground() {
         s.x += Math.cos(s.angle) * s.speed;
         s.y += Math.sin(s.angle) * s.speed;
         s.t += 1;
-        if (
-          s.x > width + 100 ||
-          s.y > height + 100 ||
-          s.t > 60
-        ) {
+        if (s.x > width + 100 || s.y > height + 100 || s.t > 60) {
           shootingStar.current.active = false;
         }
       }
@@ -217,7 +228,8 @@ export default function AnimatedBackground() {
     animate();
     return () => {
       window.removeEventListener("resize", resize);
-      if (shootingStarTimeout.current) clearTimeout(shootingStarTimeout.current);
+      if (shootingStarTimeout.current)
+        clearTimeout(shootingStarTimeout.current);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -226,7 +238,14 @@ export default function AnimatedBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full z-0 pointer-events-none"
-      style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", pointerEvents: "none" }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        pointerEvents: "none",
+      }}
     />
   );
-} 
+}
