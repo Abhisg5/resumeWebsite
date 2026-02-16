@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 type GitHubRepo = {
   id: number;
   name: string;
@@ -62,7 +64,7 @@ async function fetchRepoLanguages(
 ): Promise<string[]> {
   const response = await fetch(languagesUrl, {
     headers,
-    next: { revalidate: 3600 },
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -91,7 +93,7 @@ export async function GET() {
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=100&type=owner`,
       {
         headers,
-        next: { revalidate: 3600 },
+        cache: "no-store",
       },
     );
 
@@ -135,12 +137,25 @@ export async function GET() {
       }),
     );
 
-    return NextResponse.json({ projects }, { status: 200 });
+    return NextResponse.json(
+      { projects },
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store, max-age=0",
+        },
+      },
+    );
   } catch (error) {
     console.error("GitHub projects route error:", error);
     return NextResponse.json(
       { error: "Unexpected error while loading GitHub projects." },
-      { status: 500 },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store, max-age=0",
+        },
+      },
     );
   }
 }

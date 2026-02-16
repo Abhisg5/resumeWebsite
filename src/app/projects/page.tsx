@@ -52,7 +52,9 @@ export default function Projects() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const response = await fetch("/api/github-projects");
+        const response = await fetch("/api/github-projects", {
+          cache: "no-store",
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch projects from GitHub.");
         }
