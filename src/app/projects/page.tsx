@@ -50,17 +50,35 @@ export default function Projects() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const CLIENT_RETRY_ATTEMPTS = 3;
+    const CLIENT_RETRY_DELAY_MS = 1200;
+
+    async function sleep(ms: number): Promise<void> {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+
     async function fetchProjects() {
       try {
-        const response = await fetch("/api/github-projects", {
-          cache: "no-store",
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects from GitHub.");
+        for (let attempt = 0; attempt < CLIENT_RETRY_ATTEMPTS; attempt += 1) {
+          const response = await fetch("/api/github-projects", {
+            cache: "no-store",
+          });
+
+          if (response.ok) {
+            const data: { projects: Project[] } = await response.json();
+            setProjects(data.projects);
+            setError(null);
+            return;
+          }
+
+          if (attempt < CLIENT_RETRY_ATTEMPTS - 1) {
+            await sleep(CLIENT_RETRY_DELAY_MS * (attempt + 1));
+          }
         }
 
-        const data: { projects: Project[] } = await response.json();
-        setProjects(data.projects);
+        throw new Error("Failed to fetch projects from GitHub.");
       } catch (fetchError) {
         console.error(fetchError);
         setError("Could not load projects right now.");

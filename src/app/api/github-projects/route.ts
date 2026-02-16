@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
-
 type GitHubRepo = {
   id: number;
   name: string;
@@ -28,6 +26,43 @@ type Project = {
 const DEFAULT_USERNAME = "Abhisg5";
 const MAX_PROJECTS = 12;
 const MAX_TAGS_PER_PROJECT = 5;
+const FETCH_REVALIDATE_SECONDS = 30;
+const RETRY_ATTEMPTS = 3;
+const RETRY_DELAY_MS = 700;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function fetchWithRetry(
+  input: string,
+  init: RequestInit & { next?: { revalidate?: number } },
+): Promise<Response> {
+  let lastError: unknown = null;
+
+  for (let attempt = 0; attempt < RETRY_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await fetch(input, init);
+      if (response.ok) {
+        return response;
+      }
+
+      if (response.status === 429 || response.status >= 500) {
+        await sleep(RETRY_DELAY_MS * (attempt + 1));
+        continue;
+      }
+
+      return response;
+    } catch (error) {
+      lastError = error;
+      await sleep(RETRY_DELAY_MS * (attempt + 1));
+    }
+  }
+
+  throw lastError ?? new Error("Network request failed");
+}
 
 function normalizeTag(tag: string): string {
   return tag
@@ -62,9 +97,9 @@ async function fetchRepoLanguages(
   languagesUrl: string,
   headers: HeadersInit,
 ): Promise<string[]> {
-  const response = await fetch(languagesUrl, {
+  const response = await fetchWithRetry(languagesUrl, {
     headers,
-    cache: "no-store",
+    next: { revalidate: FETCH_REVALIDATE_SECONDS },
   });
 
   if (!response.ok) {
@@ -89,11 +124,11 @@ export async function GET() {
   }
 
   try {
-    const reposResponse = await fetch(
+    const reposResponse = await fetchWithRetry(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=100&type=owner`,
       {
         headers,
-        cache: "no-store",
+        next: { revalidate: FETCH_REVALIDATE_SECONDS },
       },
     );
 
@@ -142,7 +177,7 @@ export async function GET() {
       {
         status: 200,
         headers: {
-          "Cache-Control": "no-store, max-age=0",
+          "Cache-Control": `public, s-maxage=${FETCH_REVALIDATE_SECONDS}, stale-while-revalidate=59`,
         },
       },
     );
