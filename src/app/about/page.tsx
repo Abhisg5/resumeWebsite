@@ -84,7 +84,7 @@ export default function About() {
         </p>
       </motion.div>
 
-      <div className="grid lg:grid-cols-3 gap-8 mb-16">
+      <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
         {/* Education */}
         <motion.div
           className="professional-card p-6 lg:col-span-1"
@@ -121,7 +121,7 @@ export default function About() {
 
         {/* Summary + Achievements */}
         <motion.div
-          className="lg:col-span-2 space-y-6"
+          className="lg:col-span-2 space-y-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -164,7 +164,7 @@ export default function About() {
 
       {/* Certifications & Recognition */}
       <motion.div
-        className="professional-card p-6 mb-16"
+        className="professional-card p-6 mb-20"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
@@ -194,10 +194,10 @@ export default function About() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-8">
           Technical Skills
         </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {SKILL_CATEGORIES.map(({ title, skills }) => (
             <div key={title} className="professional-card p-6">
               <h3 className="text-base font-bold text-white mb-4">{title}</h3>
