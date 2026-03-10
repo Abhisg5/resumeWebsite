@@ -1,55 +1,62 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export default function Resume() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Ensure the page is properly loaded
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
   return (
     <motion.main
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-      className="flex flex-col items-center px-4 py-24 max-w-4xl mx-auto"
+      className="px-4 pt-32 pb-24 max-w-2xl mx-auto animated-bg"
     >
-      <motion.h1
-        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center text-gradient"
+      <motion.div
+        className="mb-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Resume
-      </motion.h1>
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+          Document
+        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Resume
+        </h1>
+        <p className="text-text-secondary">
+          View or download my full resume with experience, skills, and
+          certifications.
+        </p>
+      </motion.div>
 
       <motion.div
-        className="professional-card p-8 w-full max-w-2xl text-center"
+        className="professional-card p-8 text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
       >
         <div className="mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6">
-            📄
+          <div
+            className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6"
+            style={{ backgroundColor: "var(--primary)", color: "white" }}
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
           </div>
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Professional Resume
+          <h2 className="text-xl font-bold text-white mb-3">
+            Abhinav Gaddipati
           </h2>
-          <p className="text-white/80 leading-relaxed">
-            You can view or download my resume in PDF format below. Feel free to
-            reach out if you have any questions!
+          <p className="text-text-secondary text-sm">
+            Senior Data Engineer • AWS Certified • 4+ Years
           </p>
         </div>
 
@@ -58,25 +65,17 @@ export default function Resume() {
             href="https://docs.google.com/viewer?url=https://ilithya-clone.vercel.app/abhinav_gaddipati.pdf&embedded=true"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary flex items-center justify-center gap-2 px-6 py-3"
+            className="btn-primary inline-flex items-center justify-center gap-2"
           >
-            <span>👁️</span> View Resume
+            View Resume
           </a>
           <a
             href="/abhinav_gaddipati.pdf"
             download="Abhinav_Gaddipati_Resume.pdf"
-            className="btn-secondary flex items-center justify-center gap-2 px-6 py-3"
+            className="btn-secondary inline-flex items-center justify-center gap-2"
           >
-            <span>📥</span> Download Resume
+            Download PDF
           </a>
-        </div>
-
-        <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-          <p className="text-blue-300 text-sm font-medium">
-            💡 Tip: The resume includes detailed information about my
-            experience, skills, and achievements in data engineering and machine
-            learning.
-          </p>
         </div>
       </motion.div>
     </motion.main>

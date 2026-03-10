@@ -1,312 +1,218 @@
 "use client";
 import { motion } from "framer-motion";
 
+const SKILL_CATEGORIES = [
+  {
+    title: "Languages",
+    skills: ["Python", "Scala", "SQL", "JavaScript", "Bash", "R", "Go"],
+    accent: "primary",
+  },
+  {
+    title: "Frameworks & Libraries",
+    skills: [
+      "Apache Spark",
+      "PySpark",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+      "TensorFlow",
+      "PyTorch",
+      "FastAPI",
+      "Django",
+    ],
+    accent: "secondary",
+  },
+  {
+    title: "Cloud & DevOps",
+    skills: [
+      "AWS",
+      "Kubernetes",
+      "Docker",
+      "Terraform",
+      "GitHub Actions",
+      "Jenkins",
+      "Helm",
+      "Prometheus",
+      "Grafana",
+    ],
+    accent: "accent",
+  },
+  {
+    title: "Data & ML",
+    skills: [
+      "AWS SageMaker",
+      "Apache Kafka",
+      "Apache Airflow",
+      "Redis",
+      "PostgreSQL",
+      "MongoDB",
+      "Elasticsearch",
+      "Apache NiFi",
+      "dbt",
+    ],
+    accent: "tertiary",
+  },
+];
+
 export default function About() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-      className="px-4 py-24 max-w-7xl mx-auto animated-bg"
+      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      className="px-4 pt-32 pb-24 max-w-5xl mx-auto animated-bg"
     >
-      {/* Hero Section - Bryant's style */}
+      {/* Header */}
       <motion.div
-        className="text-center mb-20"
-        initial={{ opacity: 0, y: 50 }}
+        className="mb-16"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <h1 className="creative-heading mb-8">About</h1>
-
-        <div className="section-divider mb-12" />
-
-        <h2 className="creative-subheading mb-8">Professional Profile</h2>
-
-        <p className="creative-text max-w-4xl mx-auto">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+          About
+        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          Professional Profile
+        </h1>
+        <p className="text-text-secondary text-lg max-w-3xl leading-relaxed">
           Senior Data Engineer and Machine Learning Engineer with expertise in
-          building enterprise-scale data infrastructure, implementing advanced
-          analytics solutions, and deploying production ML systems. I specialize
-          in architecting robust, scalable data pipelines that enable
-          organizations to extract actionable insights from complex datasets.
-          <br />
-          <span className="text-primary font-semibold">
-            Transforming raw data into strategic business value through
-            cutting-edge engineering and machine learning solutions.
-          </span>
+          enterprise-scale data infrastructure, advanced analytics, and
+          production ML systems. I architect robust, scalable data pipelines
+          that enable organizations to extract actionable insights from complex
+          datasets.
         </p>
       </motion.div>
 
-      {/* Education & Experience - Creative Grid */}
-      <motion.div
-        className="creative-grid-2 mb-20"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        <div className="interactive-card">
-          <h2 className="creative-subheading mb-6">Education</h2>
+      <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        {/* Education */}
+        <motion.div
+          className="professional-card p-6 lg:col-span-1"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-6">
+            Education
+          </h2>
           <div className="space-y-6">
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-bold text-white mb-2">
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">
                 B.S. Computer Science + Statistics
               </h3>
-              <p className="text-primary font-semibold mb-1">
-                University of Illinois at Urbana–Champaign
+              <p className="text-primary font-medium text-sm">
+                University of Illinois Urbana–Champaign
               </p>
-              <p className="text-text-muted text-sm">2019–2023</p>
+              <p className="text-text-muted text-xs mt-1">2019–2023</p>
             </div>
-            <div className="border-l-4 border-secondary pl-6">
-              <h3 className="text-xl font-bold text-white mb-2">
-                MIT MicroMasters in Data Science & Statistics
+            <div className="border-t border-white/10 pt-6">
+              <h3 className="text-lg font-bold text-white mb-1">
+                MIT MicroMasters, Data Science & Statistics
               </h3>
-              <p className="text-secondary font-semibold mb-1">
+              <p className="text-secondary font-medium text-sm">
                 Massachusetts Institute of Technology
               </p>
-              <p className="text-text-muted text-sm">
-                Jan 2025–2026 (in progress)
+              <p className="text-text-muted text-xs mt-1">
+                2025–2026 (in progress)
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="interactive-card">
-          <h2 className="creative-subheading mb-6">Professional Summary</h2>
-          <p className="creative-text leading-relaxed">
-            Senior Data Engineer with 4+ years of experience architecting and
-            implementing enterprise-scale data solutions. Proven expertise in
-            building robust ETL/ELT pipelines, implementing real-time data
-            processing systems, and deploying machine learning models at scale.
-            Specialized in AWS cloud technologies, Apache Spark, and modern data
-            engineering frameworks. Led cross-functional teams in delivering
-            data-driven solutions that improved business operations and
-            decision-making capabilities across multiple industries.
-          </p>
-        </div>
-      </motion.div>
+        {/* Summary + Achievements */}
+        <motion.div
+          className="lg:col-span-2 space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="professional-card p-6">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+              Summary
+            </h2>
+            <p className="text-text-secondary leading-relaxed">
+              Senior Data Engineer with 4+ years architecting enterprise-scale
+              data solutions. Proven expertise in ETL/ELT pipelines, real-time
+              processing, and ML deployment at scale. Specialized in AWS, Apache
+              Spark, and modern data frameworks. Led cross-functional teams
+              delivering data-driven solutions across multiple industries.
+            </p>
+          </div>
+          <div className="professional-card p-6">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+              Key Achievements
+            </h2>
+            <ul className="space-y-3">
+              {[
+                "Architected enterprise data platform serving 10M+ daily transactions",
+                "Led legacy ETL migration to cloud-native architecture (60% faster processing)",
+                "Deployed production ML models with 99.9% uptime, sub-second inference",
+                "Established data governance and quality standards across business units",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-text-secondary"
+                >
+                  <span className="text-primary mt-1.5 shrink-0">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </div>
 
-      {/* Professional Achievements */}
+      {/* Certifications & Recognition */}
       <motion.div
-        className="creative-grid-2 mb-20"
-        initial={{ opacity: 0, y: 50 }}
+        className="professional-card p-6 mb-16"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
       >
-        <div className="interactive-card">
-          <h2 className="creative-subheading mb-6">Key Achievements</h2>
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span className="text-text-secondary">
-                Architected and implemented enterprise data platform serving
-                10M+ daily transactions
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span className="text-text-secondary">
-                Led migration of legacy ETL systems to modern cloud-native
-                architecture, reducing processing time by 60%
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span className="text-text-secondary">
-                Deployed production ML models with 99.9% uptime and sub-second
-                inference latency
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span className="text-text-secondary">
-                Established data governance framework and quality standards
-                across multiple business units
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="interactive-card">
-          <h2 className="creative-subheading mb-6">
-            Certifications & Recognition
-          </h2>
-          <div className="space-y-4">
-            <div className="border-l-4 border-primary pl-4">
-              <h4 className="text-lg font-semibold text-white mb-1">
-                AWS Certified Machine Learning Specialty
-              </h4>
-              <p className="text-text-secondary text-sm">
-                Advanced certification in ML on AWS platform
-              </p>
-            </div>
-            <div className="border-l-4 border-secondary pl-4">
-              <h4 className="text-lg font-semibold text-white mb-1">
-                Phirestarter Award Nominee
-              </h4>
-              <p className="text-text-secondary text-sm">
-                Recognition for exceptional contributions and innovation
-              </p>
-            </div>
-            <div className="border-l-4 border-accent pl-4">
-              <h4 className="text-lg font-semibold text-white mb-1">
-                MIT MicroMasters in Progress
-              </h4>
-              <p className="text-text-secondary text-sm">
-                Data Science & Statistics specialization
-              </p>
-            </div>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-6">
+          Certifications & Recognition
+        </h2>
+        <div className="grid sm:grid-cols-3 gap-6">
+          <div className="border-l-2 border-primary pl-4">
+            <h4 className="font-bold text-white">AWS ML Specialty</h4>
+            <p className="text-text-muted text-sm">Advanced ML on AWS</p>
+          </div>
+          <div className="border-l-2 border-secondary pl-4">
+            <h4 className="font-bold text-white">Phirestarter Nominee</h4>
+            <p className="text-text-muted text-sm">Innovation recognition</p>
+          </div>
+          <div className="border-l-2 border-accent pl-4">
+            <h4 className="font-bold text-white">MIT MicroMasters</h4>
+            <p className="text-text-muted text-sm">Data Science & Statistics</p>
           </div>
         </div>
       </motion.div>
 
-      {/* Skills Section - Bryant's creative approach */}
+      {/* Skills */}
       <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <h2 className="creative-subheading mb-8">Skills</h2>
-
-        <div className="creative-grid">
-          {/* Programming Languages */}
-          <motion.div
-            className="interactive-card group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-white text-xl">
-                💻
-              </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
-                Programming Languages
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {["Python", "Scala", "SQL", "JavaScript", "Bash", "R", "Go"].map(
-                (skill) => (
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-primary mb-6">
+          Technical Skills
+        </h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SKILL_CATEGORIES.map(({ title, skills }) => (
+            <div key={title} className="professional-card p-6">
+              <h3 className="text-base font-bold text-white mb-4">{title}</h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium border border-primary/30 hover:bg-primary/30 transition-colors"
+                    className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/5 border border-white/10 text-text-secondary"
                   >
                     {skill}
                   </span>
-                ),
-              )}
-            </div>
-          </motion.div>
-
-          {/* Frameworks & Libraries */}
-          <motion.div
-            className="interactive-card group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-secondary to-accent rounded-lg flex items-center justify-center text-white text-xl">
-                ⚡
+                ))}
               </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-secondary transition-colors">
-                Frameworks & Libraries
-              </h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Apache Spark",
-                "PySpark",
-                "Pandas",
-                "NumPy",
-                "Scikit-learn",
-                "TensorFlow",
-                "PyTorch",
-                "FastAPI",
-                "Django",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-sm font-medium border border-secondary/30 hover:bg-secondary/30 transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Cloud & DevOps */}
-          <motion.div
-            className="interactive-card group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-accent to-tertiary rounded-lg flex items-center justify-center text-white text-xl">
-                ☁️
-              </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
-                Cloud & DevOps
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "AWS",
-                "Kubernetes",
-                "Docker",
-                "Terraform",
-                "GitHub Actions",
-                "Jenkins",
-                "Helm",
-                "Prometheus",
-                "Grafana",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium border border-accent/30 hover:bg-accent/30 transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Data & ML */}
-          <motion.div
-            className="interactive-card group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-tertiary to-primary rounded-lg flex items-center justify-center text-white text-xl">
-                🧠
-              </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-tertiary transition-colors">
-                Data & ML
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "AWS SageMaker",
-                "Apache Kafka",
-                "Apache Airflow",
-                "Redis",
-                "PostgreSQL",
-                "MongoDB",
-                "Elasticsearch",
-                "Apache NiFi",
-                "dbt",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="bg-tertiary/20 text-tertiary px-3 py-1 rounded-full text-sm font-medium border border-tertiary/30 hover:bg-tertiary/30 transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          ))}
         </div>
       </motion.div>
     </motion.main>

@@ -92,24 +92,31 @@ export default function Projects() {
 
   return (
     <motion.main
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-      className="flex flex-col items-center px-4 py-24 max-w-6xl mx-auto"
+      className="px-4 pt-32 pb-24 max-w-5xl mx-auto animated-bg"
     >
-      <motion.h1
-        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center text-gradient"
+      <motion.div
+        className="mb-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Projects
-      </motion.h1>
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+          Portfolio
+        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-white">Projects</h1>
+        <p className="text-text-secondary mt-2">
+          Open-source and personal projects in data engineering and software
+          development.
+        </p>
+      </motion.div>
 
-      {error ? <p className="text-red-300 text-center">{error}</p> : null}
+      {error ? <p className="text-red-400 text-center py-8">{error}</p> : null}
 
       {loading ? (
-        <p className="text-white/70 text-center">Loading projects...</p>
+        <p className="text-text-muted text-center py-12">Loading projects...</p>
       ) : null}
 
       {!loading && !error ? (
@@ -133,7 +140,7 @@ export default function Projects() {
                 href={project.htmlUrl}
                 target="_blank"
                 rel="noopener"
-                className="professional-card p-6 hover:scale-105 transition-all duration-300 group"
+                className="professional-card p-6 hover:border-primary/40 transition-all duration-300 group block"
                 variants={{
                   hidden: { opacity: 0, y: 40 },
                   visible: {
@@ -144,15 +151,15 @@ export default function Projects() {
                 }}
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center text-lg shrink-0 bg-white/5 border border-white/10">
                     {icon}
                   </div>
-                  <div className="flex-1">
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
                       {project.name}
                     </h2>
-                    <p className="text-white/80 text-sm leading-relaxed">
-                      {project.description}
+                    <p className="text-text-secondary text-sm leading-relaxed">
+                      {project.description || "No description."}
                     </p>
                   </div>
                 </div>
@@ -168,10 +175,10 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-white/60">
-                  <span>Last updated: {formatDate(project.updatedAt)}</span>
-                  <span className="group-hover:text-blue-300 transition-colors">
-                    View Project →
+                <div className="flex items-center justify-between text-xs text-text-muted pt-2 border-t border-white/5">
+                  <span>Updated {formatDate(project.updatedAt)}</span>
+                  <span className="text-primary font-medium group-hover:underline">
+                    View →
                   </span>
                 </div>
               </motion.a>

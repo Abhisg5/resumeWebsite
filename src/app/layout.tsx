@@ -63,7 +63,7 @@ export default function RootLayout({
           className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
             scrolled
               ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 dark:bg-black/95 dark:border-white/20 shadow-lg"
-              : "bg-transparent"
+              : "bg-black/60 backdrop-blur-md border-b border-white/5"
           }`}
         >
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -77,7 +77,7 @@ export default function RootLayout({
               </Link>
 
               {/* Navigation Links */}
-              <div className="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center gap-1">
                 <Link
                   href="/"
                   className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
@@ -94,7 +94,7 @@ export default function RootLayout({
                   href="/work"
                   className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
                 >
-                  Work
+                  Experience
                 </Link>
                 <Link
                   href="/projects"
@@ -116,7 +116,7 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/resume"
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  className="ml-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-600 dark:hover:bg-blue-500 transition-all duration-200 shadow-md"
                 >
                   Resume
                 </Link>
@@ -183,7 +183,7 @@ export default function RootLayout({
                   className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Work
+                  Experience
                 </Link>
                 <Link
                   href="/projects"
@@ -208,7 +208,7 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/resume"
-                  className="block px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 dark:text-white dark:hover:text-blue-400 dark:hover:bg-white/10 transition-all duration-200"
+                  className="block px-4 py-3 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 transition-all duration-200"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Resume
